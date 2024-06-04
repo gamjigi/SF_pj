@@ -8,6 +8,8 @@ mycobot320 moveit 수정본
 roslaunch mycobot_320_gripper_moveit mycobot_320_gripper_moveit.launch
 터미널2
 rosrun mycobot_320_gripper_moveit sync_plan.py
+터미널3
+rosrun mycobot_320_gripper_moveit t.py
 
 
 로봇암 + cam + 그리퍼 경우
