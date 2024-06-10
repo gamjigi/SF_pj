@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환자 아침 체크 양식</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('/static/logo.jpg'); /* 배경 이미지 경로 */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* 약간 투명한 배경색 */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>전자 문진</h1>
+        <form id="patientForm">
+            <div class="form-group">
+                <label for="name">이름:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="age">나이:</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="symptoms">증상:</label>
+                <textarea class="form-control" id="symptoms" name="symptoms" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">생년월일:</label>
+                <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+            </div>
+            <div class="form-group">
+                <label for="room_number">호실:</label>
+                <input type="text" class="form-control" id="room_number" name="room_number" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">성별:</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="Male">남성</option>
+                    <option value="Female">여성</option>
+                    <option value="Other">기타</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" onclick="submitForm()">제출</button>
+            <button type="button" class="btn btn-danger btn-block" onclick="resetTable()">초기화</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            const formData = {
+                name: document.getElementById('name').value,
+                age: document.getElementById('age').value,
+                symptoms: document.getElementById('symptoms').value,
+                birthdate: document.getElementById('birthdate').value,
+                room_number: document.getElementById('room_number').value,
+                gender: document.getElementById('gender').value
+            };
+
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => alert(data.status))
+            .catch(error => console.error('Error:', error));
+        }
+
+        function resetTable() {
+            fetch('/reset', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => alert(data.status))
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+        #extract Landmarks / 좌표찍기인데 필요할때 쓰면 될듯.
+        # try:
+        #     landmarks = results.pose_landmarks.landmark
+        #     print(landmarks)
+        # except:
+        #     pass
+        # landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].visibility  visibility => 신뢰도
+        # landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value]                 value => 인덱스
+        # landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value]
+        
+        # shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+        # elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+        # wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+        
+            # Visualize angle
+        # cv2.putText(image, str(angle), 
+        #                    tuple(np.multiply(elbow, [640, 480]).astype(int)), 
+        #                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+        #                         )    
+        
